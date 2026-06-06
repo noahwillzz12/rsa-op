@@ -2,8 +2,8 @@
 // Updates dashboard when systems change
 
 module.exports = {
-  name: 'ready',
-  once: true, // Only run once on ready
+  name: 'appReady',
+  once: true, // Only run once on appReady
   async execute(client) {
     console.log('[Operations Centre] Setting up auto-sync system...');
 

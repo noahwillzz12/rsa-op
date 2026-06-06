@@ -11,6 +11,7 @@ const ManagersDashboard = require('./services/ManagersDashboard');
 const OperationsCenter = require('./services/OperationsCenter');
 const TransferManager = require('./services/TransferManager');
 const FixtureManager = require('./services/FixtureManager');
+const LeagueMonitor = require('./services/LeagueMonitor');
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ if (!token) {
 // TEAM REGISTRY & DATA MANAGEMENT
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-const TEAMS_FILE = path.join(__dirname, 'teams.json');
+const TEAMS_FILE = path.join(__dirname, 'data', 'teams.json');
 
 class TeamRegistry {
   constructor() {
@@ -176,26 +177,7 @@ for (const command of commandModules) {
   }
 }
 
-// Load event handlers
-const eventsPath = path.join(__dirname, 'events');
-try {
-  const eventFiles = readdirSync(eventsPath).filter((file) => file.endsWith('.js'));
-  for (const file of eventFiles) {
-    const event = require(path.join(eventsPath, file));
-    if (event && event.name) {
-      if (event.once) {
-        client.once(event.name, (...args) => event.execute(...args));
-      } else {
-        client.on(event.name, (...args) => event.execute(...args));
-      }
-    }
-  }
-  console.log('✅ Event modules loaded');
-} catch (error) {
-  console.warn('⚠️ Unable to load event modules:', error.message);
-}
-
-client.once('ready', async () => {
+client.once('clientReady', async () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
 
   try {
@@ -247,6 +229,12 @@ client.once('ready', async () => {
     console.log('✅ Operations Centre initialized');
 
     await client.guilds.fetch();
+
+    // Initialize LeagueMonitor before clientReady-dependent events run
+    client.leagueMonitor = new LeagueMonitor(client);
+    await client.leagueMonitor.initialize();
+    console.log('✅ LeagueMonitor initialized');
+
     for (const guild of client.guilds.cache.values()) {
       await setupTeamRoles(guild).catch((err) => {
         console.warn(`⚠️ Failed to setup team roles for ${guild.id}: ${err.message}`);
@@ -263,10 +251,32 @@ client.once('ready', async () => {
       });
     }
     console.log('✅ Guild slash commands registered');
+
+    client.emit('appReady');
+    console.log('✅ App ready event emitted');
   } catch (error) {
     console.error('❌ Startup error:', error);
   }
 });
+
+// Load event handlers
+const eventsPath = path.join(__dirname, 'events');
+try {
+  const eventFiles = readdirSync(eventsPath).filter((file) => file.endsWith('.js'));
+  for (const file of eventFiles) {
+    const event = require(path.join(eventsPath, file));
+    if (event && event.name) {
+      if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+      } else {
+        client.on(event.name, (...args) => event.execute(...args));
+      }
+    }
+  }
+  console.log('✅ Event modules loaded');
+} catch (error) {
+  console.warn('⚠️ Unable to load event modules:', error.message);
+}
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ROSTER COMMAND HANDLER
@@ -389,62 +399,6 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`🌐 HTTP server listening on port ${PORT}`);
 });
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// LOAD DASHBOARD MONITORING EVENTS
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-try {
-  const dashboardAutoUpdateEvents = require('./events/dashboardAutoUpdate.js');
-  for (const event of dashboardAutoUpdateEvents) {
-    if (event.once) {
-      client.once(event.name, (...args) => event.execute(...args));
-    } else {
-      client.on(event.name, (...args) => event.execute(...args));
-    }
-  }
-  console.log('✅ Dashboard monitoring events loaded');
-} catch (error) {
-  console.warn('⚠️ Failed to load dashboard monitoring events:', error.message);
-}
-
-try {
-  const staffCentreAutoUpdateEvents = require('./events/staffCentreAutoUpdate.js');
-  for (const event of staffCentreAutoUpdateEvents) {
-    if (event.once) {
-      client.once(event.name, (...args) => event.execute(...args));
-    } else {
-      client.on(event.name, (...args) => event.execute(...args));
-    }
-  }
-  console.log('✅ Staff Centre auto-update events loaded');
-} catch (error) {
-  console.warn('⚠️ Failed to load Staff Centre auto-update events:', error.message);
-}
-
-try {
-  const complianceAutoScanEvent = require('./events/complianceAutoScan.js');
-  if (complianceAutoScanEvent.once) {
-    client.once(complianceAutoScanEvent.name, (...args) => complianceAutoScanEvent.execute(...args));
-  } else {
-    client.on(complianceAutoScanEvent.name, (...args) => complianceAutoScanEvent.execute(...args));
-  }
-  console.log('✅ Compliance auto-scan event loaded');
-} catch (error) {
-  console.warn('⚠️ Failed to load compliance auto-scan event:', error.message);
-}
-
-try {
-  const managersAutoUpdateEvent = require('./events/managersAutoUpdate.js');
-  if (managersAutoUpdateEvent.once) {
-    client.once(managersAutoUpdateEvent.name, (...args) => managersAutoUpdateEvent.execute(...args));
-  } else {
-    client.on(managersAutoUpdateEvent.name, (...args) => managersAutoUpdateEvent.execute(...args));
-  }
-  console.log('✅ Managers auto-update event loaded');
-} catch (error) {
-  console.warn('⚠️ Failed to load managers auto-update event:', error.message);
-}
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // LOGIN

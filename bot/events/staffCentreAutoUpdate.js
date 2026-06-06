@@ -90,7 +90,7 @@ module.exports = [
     },
   },
   {
-    name: 'ready',
+    name: 'appReady',
     once: true,
     async execute(client) {
       for (const guild of client.guilds.cache.values()) {

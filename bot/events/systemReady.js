@@ -1,9 +1,14 @@
 const LeagueMonitor = require('../services/LeagueMonitor');
 
 module.exports = {
-  name: 'ready',
+  name: 'appReady',
   once: true,
   async execute(client) {
+    if (client.leagueMonitor) {
+      console.log('✅ LeagueMonitor already initialized');
+      return;
+    }
+
     console.log('✅ System ready event fired: initializing RSA Operations Centre');
 
     try {

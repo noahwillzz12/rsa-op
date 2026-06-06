@@ -52,7 +52,7 @@ async function setupManagersDashboardAutoUpdate(client) {
 }
 
 module.exports = {
-  name: 'ready',
+  name: 'appReady',
   once: true,
   async execute(client) {
     await setupManagersDashboardAutoUpdate(client);

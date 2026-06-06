@@ -1,7 +1,7 @@
 const { loadSettings } = require('../utils/settings');
 
 module.exports = {
-  name: 'ready',
+  name: 'appReady',
   once: true,
   async execute(client) {
     const settings = await loadSettings();

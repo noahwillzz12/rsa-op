@@ -229,7 +229,7 @@ module.exports = [
     },
   },
   {
-    name: 'ready',
+    name: 'appReady',
     once: true,
     async execute(client) {
       console.log('✅ Dashboard monitoring system initialized');

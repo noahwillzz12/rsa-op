@@ -63,7 +63,7 @@ async function startComplianceAutoScan(client) {
 }
 
 module.exports = {
-  name: 'ready',
+  name: 'appReady',
   once: true,
   async execute(client) {
     await startComplianceAutoScan(client);
