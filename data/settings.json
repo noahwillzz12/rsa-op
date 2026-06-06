@@ -12,6 +12,24 @@
   "assistantManagerRoleNames": [
     "RSA | Assistant Managers"
   ],
+  "nationalTeamRoleNames": [
+    "Belgium",
+    "Brazil",
+    "Croatia",
+    "England",
+    "France",
+    "Germany",
+    "Ghana",
+    "Japan",
+    "Morocco",
+    "Netherlands",
+    "Norway",
+    "Senegal",
+    "Spain",
+    "Sweden",
+    "Türkiye",
+    "USA"
+  ],
   "sanctionRoleNames": [
     "RSA | Founders",
     "RSA | Co Founders",
