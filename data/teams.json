@@ -1,0 +1,164 @@
+{
+  "teams": [
+    {
+      "teamId": "usa",
+      "teamName": "USA",
+      "teamCode": "USA",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/usa.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "sweden",
+      "teamName": "Sweden",
+      "teamCode": "SWE",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/sweden.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "spain",
+      "teamName": "Spain",
+      "teamCode": "ESP",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/spain.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "japan",
+      "teamName": "Japan",
+      "teamCode": "JPN",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/japan.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "belgium",
+      "teamName": "Belgium",
+      "teamCode": "BEL",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/belgium.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "turkiye",
+      "teamName": "Türkiye",
+      "teamCode": "TUR",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/turkiye.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "netherlands",
+      "teamName": "Netherlands",
+      "teamCode": "NED",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/netherlands.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "germany",
+      "teamName": "Germany",
+      "teamCode": "GER",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/germany.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "norway",
+      "teamName": "Norway",
+      "teamCode": "NOR",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/norway.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "senegal",
+      "teamName": "Senegal",
+      "teamCode": "SEN",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/senegal.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "morocco",
+      "teamName": "Morocco",
+      "teamCode": "MAR",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/morocco.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "croatia",
+      "teamName": "Croatia",
+      "teamCode": "CRO",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/croatia.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "ghana",
+      "teamName": "Ghana",
+      "teamCode": "GHA",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/ghana.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "brazil",
+      "teamName": "Brazil",
+      "teamCode": "BRA",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/brazil.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "england",
+      "teamName": "England",
+      "teamCode": "ENG",
+      "roleId": "",
+      "coachDiscordId": "",
+      "logo": "assets/england.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamId": "france",
+      "teamName": "France",
+      "teamCode": "FRA",
+      "roleId": "",
+      "coachDiscordId": "744523810195111987",
+      "logo": "assets/france.png",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    }
+  ]
+}

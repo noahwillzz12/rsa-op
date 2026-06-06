@@ -1,0 +1,43 @@
+{
+  "botOwnerId": "BOT_OWNER_ID_HERE",
+  "botCommandsChannelId": "1469390106736594995",
+  "contractsChannelId": "1509860104479182879",
+  "releaseChannelId": "1512605787585908866",
+  "freeAgentRoleName": "Free Agent",
+  "sanctionedRoleId": "1483172660228919407",
+  "cupTiedRoleId": "1512515140346445876",
+  "managerRoleNames": [
+    "RSA | Managers"
+  ],
+  "assistantManagerRoleNames": [
+    "RSA | Assistant Managers"
+  ],
+  "sanctionRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders",
+    "RSA | Executive",
+    "RSA | Chairman",
+    "RSA | Vice Chairman",
+    "RSA | Staff"
+  ],
+  "auditRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders",
+    "RSA | Executive",
+    "RSA | Chairman",
+    "RSA | Vice Chairman"
+  ],
+  "worldCupLockRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders",
+    "RSA | Executive",
+    "RSA | Chairman",
+    "RSA | Vice Chairman"
+  ],
+  "worldCupUnlockRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders"
+  ],
+  "worldCupMode": false,
+  "transferWindowOpen": true
+}

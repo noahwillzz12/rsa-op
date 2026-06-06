@@ -1,0 +1,164 @@
+{
+  "teams": [
+    {
+      "teamName": "USA",
+      "teamCode": "USA",
+      "roleId": "1234567890",
+      "logo": "./assets/usa.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Sweden",
+      "teamCode": "SWE",
+      "roleId": "1234567891",
+      "logo": "./assets/sweden.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Spain",
+      "teamCode": "ESP",
+      "roleId": "1234567892",
+      "logo": "./assets/spain.png",
+      "coachDiscordId": "795367482952384552",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Japan",
+      "teamCode": "JPN",
+      "roleId": "1234567893",
+      "logo": "./assets/japan.png",
+      "coachDiscordId": "1425499605386395779",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Belgium",
+      "teamCode": "BEL",
+      "roleId": "1234567894",
+      "logo": "./assets/belgium.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Türkiye",
+      "teamCode": "TUR",
+      "roleId": "1234567895",
+      "logo": "./assets/turkiye.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Netherlands",
+      "teamCode": "NED",
+      "roleId": "1234567896",
+      "logo": "./assets/netherlands.png",
+      "coachDiscordId": "1354933946449657886",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Germany",
+      "teamCode": "GER",
+      "roleId": "1234567897",
+      "logo": "./assets/germany.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Norway",
+      "teamCode": "NOR",
+      "roleId": "1234567898",
+      "logo": "./assets/norway.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Senegal",
+      "teamCode": "SEN",
+      "roleId": "1234567899",
+      "logo": "./assets/senegal.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Morocco",
+      "teamCode": "MAR",
+      "roleId": "1234567900",
+      "logo": "./assets/morocco.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Croatia",
+      "teamCode": "CRO",
+      "roleId": "1234567901",
+      "logo": "./assets/croatia.png",
+      "coachDiscordId": "1270009688854888551",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Ghana",
+      "teamCode": "GHA",
+      "roleId": "1234567902",
+      "logo": "./assets/ghana.png",
+      "coachDiscordId": "1488194820999610600",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "Brazil",
+      "teamCode": "BRA",
+      "roleId": "1234567903",
+      "logo": "./assets/brazil.png",
+      "coachDiscordId": "1215368499413651497",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "England",
+      "teamCode": "ENG",
+      "roleId": "1234567904",
+      "logo": "./assets/england.png",
+      "coachDiscordId": "0",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    },
+    {
+      "teamName": "France",
+      "teamCode": "FRA",
+      "roleId": "1234567905",
+      "logo": "./assets/france.png",
+      "coachDiscordId": "744523810195111987",
+      "coachRobloxId": "0",
+      "rosterLimit": 16,
+      "rosterPlayers": []
+    }
+  ]
+}
