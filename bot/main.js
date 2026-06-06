@@ -177,7 +177,12 @@ for (const command of commandModules) {
   }
 }
 
-client.once('clientReady', async () => {
+let startupHandled = false;
+
+async function handleClientReady() {
+  if (startupHandled) return;
+  startupHandled = true;
+
   console.log(`✅ Logged in as ${client.user.tag}`);
 
   try {
@@ -230,7 +235,7 @@ client.once('clientReady', async () => {
 
     await client.guilds.fetch();
 
-    // Initialize LeagueMonitor before clientReady-dependent events run
+    // Initialize LeagueMonitor before appReady-dependent events run
     client.leagueMonitor = new LeagueMonitor(client);
     await client.leagueMonitor.initialize();
     console.log('✅ LeagueMonitor initialized');
@@ -257,21 +262,39 @@ client.once('clientReady', async () => {
   } catch (error) {
     console.error('❌ Startup error:', error);
   }
-});
+}
+
+client.once('ready', handleClientReady);
+client.once('clientReady', handleClientReady);
 
 // Load event handlers
 const eventsPath = path.join(__dirname, 'events');
+function registerBotEvent(event) {
+  if (!event) return;
+  if (Array.isArray(event)) {
+    for (const subEvent of event) {
+      registerBotEvent(subEvent);
+    }
+    return;
+  }
+
+  if (!event.name || typeof event.execute !== 'function') {
+    return;
+  }
+
+  const listener = (...args) => event.execute(client, ...args);
+  if (event.once) {
+    client.once(event.name, listener);
+  } else {
+    client.on(event.name, listener);
+  }
+}
+
 try {
   const eventFiles = readdirSync(eventsPath).filter((file) => file.endsWith('.js'));
   for (const file of eventFiles) {
     const event = require(path.join(eventsPath, file));
-    if (event && event.name) {
-      if (event.once) {
-        client.once(event.name, (...args) => event.execute(client, ...args));
-      } else {
-        client.on(event.name, (...args) => event.execute(client, ...args));
-      }
-    }
+    registerBotEvent(event);
   }
   console.log('✅ Event modules loaded');
 } catch (error) {
