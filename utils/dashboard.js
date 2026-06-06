@@ -36,13 +36,21 @@ async function getTeamLogoAttachment(teamName, fallbackLogoPath) {
  * Get RSA logo attachment
  */
 async function getRSALogoAttachment() {
-  try {
-    const rsaLogoPath = path.join(__dirname, '..', 'assets', 'rsa.png');
-    await fs.access(rsaLogoPath);
-    return new AttachmentBuilder(rsaLogoPath, { name: 'rsa.png' });
-  } catch {
-    return null;
+  const rsaPaths = [
+    path.join(__dirname, '..', 'assets', 'rsa.png'),
+    path.join(__dirname, '..', 'assets', 'rsa1.png'),
+  ];
+
+  for (const rsaLogoPath of rsaPaths) {
+    try {
+      await fs.access(rsaLogoPath);
+      return new AttachmentBuilder(rsaLogoPath, { name: 'rsa.png' });
+    } catch {
+      continue;
+    }
   }
+
+  return null;
 }
 
 /**

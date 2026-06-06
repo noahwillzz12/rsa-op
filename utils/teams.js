@@ -6,6 +6,7 @@ const { loadSettings } = require('./settings');
 const TEAMS_PATH = path.join(__dirname, '..', 'data', 'teams.json');
 const ASSETS_PATH = path.join(__dirname, '..', 'assets');
 const DEFAULT_LOGO_PATH = path.join(ASSETS_PATH, 'rsa.png');
+const DEFAULT_LOGO_PATH_ALT = path.join(ASSETS_PATH, 'rsa1.png');
 
 function slugify(value) {
   return value
@@ -128,7 +129,19 @@ function getLogoPathForTeam(team) {
   const logoPath = path.isAbsolute(team.logo) ? team.logo : path.join(__dirname, '..', team.logo);
   return fs.access(logoPath)
     .then(() => logoPath)
-    .catch(() => DEFAULT_LOGO_PATH);
+    .catch(async () => {
+      try {
+        await fs.access(DEFAULT_LOGO_PATH);
+        return DEFAULT_LOGO_PATH;
+      } catch {
+        try {
+          await fs.access(DEFAULT_LOGO_PATH_ALT);
+          return DEFAULT_LOGO_PATH_ALT;
+        } catch {
+          return DEFAULT_LOGO_PATH;
+        }
+      }
+    });
 }
 
 async function validateTeamConfig() {
