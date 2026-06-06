@@ -44,9 +44,14 @@ module.exports = {
       const team = await getTeamByRoleId(roleId, newMember.guild);
       if (!team) continue;
 
-      const transaction = await findSignTransactionForPlayer(newMember.id, team.teamCode);
-      const rostered = team.rosterPlayers.some((entry) => entry.playerId === newMember.id);
-      const validTransaction = transaction && ['pending', 'accepted'].includes(transaction.status) && transaction.transferWindowOpen === true;
+      // Debounce briefly to allow sign flows to complete and transactions to be recorded
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Re-fetch team to get up-to-date roster
+      const freshTeam = await getTeamByRoleId(roleId, newMember.guild);
+      const transaction = await findSignTransactionForPlayer(newMember.id, freshTeam?.teamCode || team.teamCode);
+      const rostered = Array.isArray(freshTeam?.rosterPlayers) ? freshTeam.rosterPlayers.some((entry) => entry.playerId === newMember.id) : false;
+      const validTransaction = transaction && ['pending', 'accepted', 'completed'].includes(transaction.status) && transaction.transferWindowOpen === true;
       if (validTransaction && rostered) continue;
 
       const issueParts = [];
@@ -61,14 +66,14 @@ module.exports = {
         status: 'flagged',
         playerId: newMember.id,
         playerTag: newMember.user.tag,
-        teamCode: team.teamCode,
-        teamName: team.teamName,
+        teamCode: freshTeam?.teamCode || team.teamCode,
+        teamName: freshTeam?.teamName || team.teamName,
         staffId: null,
         reason: issueParts.join(' '),
         timestamp: new Date().toISOString(),
       });
 
-      const embed = buildIllegalSigningEmbed(`<@${newMember.id}>`, team.teamName, issueParts.join(' '), transactionId);
+      const embed = buildIllegalSigningEmbed(`<@${newMember.id}>`, freshTeam?.teamName || team.teamName, issueParts.join(' '), transactionId);
       if (contractsChannel && contractsChannel.isTextBased()) {
         await contractsChannel.send({ embeds: [embed] }).catch(() => null);
       }
