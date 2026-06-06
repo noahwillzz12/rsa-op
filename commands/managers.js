@@ -49,7 +49,6 @@ module.exports = {
       subcommand
         .setName('refresh')
         .setDescription('Manually refresh the leadership dashboard')
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
     ),
 
   async execute(interaction) {

@@ -160,18 +160,3 @@ module.exports = {
     }
   },
 };
-      await client.operationsCenter.setDashboardInfo(interaction.guild.id, dashboardChannel.id, dashboardMessage.id);
-
-      client.operationsCenter.logActivity(`Operations Centre deployed by ${interaction.user.username}`);
-
-      return interaction.editReply({
-        content: `✅ **Operations Centre Deployed**\n\n📍 Channel: ${dashboardChannel}\n💾 Message ID: \`${dashboardMessage.id}\`\n\n🎯 The dashboard is now live and will automatically update with all system changes.`,
-      });
-    } catch (error) {
-      console.error('Error deploying Operations Centre:', error);
-      return interaction.editReply({
-        content: `❌ Error deploying Operations Centre: ${error.message}`,
-      });
-    }
-  },
-};
