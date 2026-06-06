@@ -58,7 +58,7 @@ async function buildDashboardEmbed(leadership, page = 0, rsaLogoUrl = null, tran
     const embed = new EmbedBuilder()
       .setAuthor({
         name: 'RSA National Team Management System',
-        iconURL: rsaLogoUrl || 'attachment://rsa.png',
+        ...(rsaLogoUrl ? { iconURL: rsaLogoUrl } : {}),
       })
       .setTitle(`🌍 RSA National Team Leadership Dashboard`)
       .setDescription(
@@ -68,7 +68,7 @@ async function buildDashboardEmbed(leadership, page = 0, rsaLogoUrl = null, tran
       .setColor('#1f1f1f')
       .setFooter({
         text: 'RSA National Team Management System • Leadership Monitoring Active',
-        iconURL: rsaLogoUrl || 'attachment://rsa.png',
+        ...(rsaLogoUrl ? { iconURL: rsaLogoUrl } : {}),
       })
       .setTimestamp();
 

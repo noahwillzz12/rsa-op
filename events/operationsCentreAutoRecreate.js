@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { ChannelType } = require('discord.js');
 
 module.exports = {
@@ -43,11 +45,19 @@ module.exports = {
           const navigationButtons = client.operationsCenter.getNavigationButtons(currentPage);
 
           // Create new message
-          const newMessage = await channel.send({
+          const rsaPath = path.join(process.cwd(), 'assets', 'rsa.png');
+          const filesToSend = [];
+          if (fs.existsSync(rsaPath)) {
+            filesToSend.push(rsaPath);
+          }
+
+          const sendPayload = {
             embeds: [pageEmbed],
             components: navigationButtons,
-            files: ['./assets/rsa.png'],
-          }).catch((err) => {
+          };
+          if (filesToSend.length) sendPayload.files = filesToSend;
+
+          const newMessage = await channel.send(sendPayload).catch((err) => {
             console.error('[Operations Centre] Error sending new dashboard message:', err.message);
             return null;
           });

@@ -9,7 +9,6 @@ function buildDashboardPage(systems) {
     .setTitle('🏠 RSA OPERATIONS CENTRE')
     .setDescription('Unified management system for Roblox Soccer Association')
     .setColor('#1f1f1f')
-    .setThumbnail('attachment://rsa.png')
     .addFields(
       { name: '⚙️ System Status', value: '✅ All systems operational', inline: false },
       {
