@@ -1,0 +1,11 @@
+services:
+  - type: web_service
+    name: rsa-op-bot
+    env: node
+    plan: starter
+    branch: main
+    repo: https://github.com/noahwillzz12/rsa-op
+    rootDir: bot
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
