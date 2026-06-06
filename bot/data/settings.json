@@ -1,0 +1,61 @@
+{
+  "botOwnerId": "BOT_OWNER_ID_HERE",
+  "botCommandsChannelId": "1512871626637578371",
+  "contractsChannelId": "1512857515858329841",
+  "releaseChannelId": "1512857516860637386",
+  "freeAgentRoleName": "Free Agent",
+  "sanctionedRoleId": "1483172660228919407",
+  "cupTiedRoleId": "1512515140346445876",
+  "managerRoleNames": [
+    "RSA | Managers"
+  ],
+  "assistantManagerRoleNames": [
+    "RSA | Assistant Managers"
+  ],
+  "nationalTeamRoleNames": [
+    "Belgium",
+    "Brazil",
+    "Croatia",
+    "England",
+    "France",
+    "Germany",
+    "Ghana",
+    "Japan",
+    "Morocco",
+    "Netherlands",
+    "Norway",
+    "Senegal",
+    "Spain",
+    "Sweden",
+    "Türkiye",
+    "USA"
+  ],
+  "sanctionRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders",
+    "RSA | Executive",
+    "RSA | Chairman",
+    "RSA | Vice Chairman",
+    "RSA | Staff"
+  ],
+  "auditRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders",
+    "RSA | Executive",
+    "RSA | Chairman",
+    "RSA | Vice Chairman"
+  ],
+  "worldCupLockRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders",
+    "RSA | Executive",
+    "RSA | Chairman",
+    "RSA | Vice Chairman"
+  ],
+  "worldCupUnlockRoleNames": [
+    "RSA | Founders",
+    "RSA | Co Founders"
+  ],
+  "worldCupMode": false,
+  "transferWindowOpen": true
+}

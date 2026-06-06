@@ -1,62 +1,133 @@
-# RSA Roster Management System
+# RSA Monorepo
 
-Complete Discord.js v14 bot for managing Roblox Soccer Association (RSA) national team rosters.
+This repository is organized as a monorepo with separate packages for the Discord bot, website, and shared code.
+
+## Repository Structure
+
+```
+/
+├── bot/          # Discord.js bot package
+├── shared/       # Shared constants, team configuration, permissions, and types
+├── web/          # Next.js website package
+├── README.md     # Monorepo documentation
+└── .gitignore
+```
+
+## Packages
+
+- `/bot` — Discord bot that writes league data to PostgreSQL and connects to Discord.
+- `/web` — Next.js website that reads league and roster data from PostgreSQL.
+- `/shared` — Shared constants and typings used by both packages.
 
 ---
 
-## 📋 Features
+## Getting Started
 
-✅ **16 Official RSA National Teams** - Pre-configured with all teams  
-✅ **JSON-Based Storage** - teams.json for persistent data  
-✅ **Slash Commands** - `/roster` command with team selection  
-✅ **Team Logos** - Embedded PNG images for each team  
-✅ **Roster Management** - Add/remove players, track squad sizes  
-✅ **Production-Ready** - Comprehensive error handling & async operations  
-✅ **Discord.js v14** - Using latest API (SlashCommandBuilder, EmbedBuilder, AttachmentBuilder)  
+### Install dependencies
 
----
-
-## 🛠 Setup
-
-### 1. Install Dependencies
+Run from the repository root:
 
 ```bash
 npm install
 ```
 
-### 2. Environment Variables
+This installs dependencies for the monorepo and links the local `@rsa/shared` package.
 
-Create `.env` file:
+---
+
+## Environment Configuration
+
+Use `.env.example` in each package as a template. Do not commit real secrets.
+
+### Bot environment variables
+
+Copy `bot/.env.example` to `bot/.env` and set values:
 
 ```env
 DISCORD_TOKEN=your_bot_token_here
+BOT_OWNER_ID=your_discord_user_id_here
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
 ```
 
-### 3. Team Logos
+### Website environment variables
 
-Place PNG files in the `assets/` folder:
+Copy `web/.env.example` to `web/.env` and set values:
 
-```
-assets/
-  ├── usa.png
-  ├── sweden.png
-  ├── spain.png
-  ├── japan.png
-  ├── belgium.png
-  ├── turkiye.png
-  ├── netherlands.png
-  ├── germany.png
-  ├── norway.png
-  ├── senegal.png
-  ├── morocco.png
-  ├── croatia.png
-  ├── ghana.png
-  ├── brazil.png
-  ├── england.png
-  └── france.png
+```env
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=replace-me-with-a-strong-secret
+DISCORD_CLIENT_ID=your-discord-client-id
+DISCORD_CLIENT_SECRET=your-discord-client-secret
+DISCORD_GUILD_ID=your-rsa-discord-server-id
+DISCORD_BOT_TOKEN=your-discord-bot-token
+BOT_OWNER_ID=your-discord-user-id
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
 ```
 
-### 4. Run the Bot
+### Shared database usage
+
+Both the bot and website use the same PostgreSQL database URI from `DATABASE_URL`.
+The bot writes league data into the database, while the website reads and displays league data.
+
+---
+
+## Running Locally
+
+### Run the bot
+
+```bash
+cd bot
+npm run dev
+```
+
+### Run the website
+
+```bash
+cd web
+npm run dev
+```
+
+---
+
+## Deployment
+
+### Deploy the website to Vercel
+
+1. Set the Vercel project root to `/web`.
+2. Add the same environment variables used locally in Vercel:
+   - `NEXTAUTH_URL`
+   - `NEXTAUTH_SECRET`
+   - `DISCORD_CLIENT_ID`
+   - `DISCORD_CLIENT_SECRET`
+   - `DISCORD_GUILD_ID`
+   - `DISCORD_BOT_TOKEN`
+   - `BOT_OWNER_ID`
+   - `DATABASE_URL`
+3. Use the default build command:
+
+```bash
+npm run build
+```
+
+4. Use the default install command:
+
+```bash
+npm install
+```
+
+### Deploy the bot separately
+
+The bot deploys outside Vercel. Use any Node.js host or container service.
+
+1. Copy `bot/.env.example` to `bot/.env` and fill in values.
+2. Install dependencies in `/bot`:
+
+```bash
+cd bot
+npm install
+```
+
+3. Start the bot:
 
 ```bash
 npm start
@@ -64,100 +135,12 @@ npm start
 
 ---
 
-## 📊 Teams
+## Notes
 
-| Team | Code | Roster Limit |
-|------|------|--------------|
-| USA | USA | 16 |
-| Sweden | SWE | 16 |
-| Spain | ESP | 16 |
-| Japan | JPN | 16 |
-| Belgium | BEL | 16 |
-| Türkiye | TUR | 16 |
-| Netherlands | NED | 16 |
-| Germany | GER | 16 |
-| Norway | NOR | 16 |
-| Senegal | SEN | 16 |
-| Morocco | MAR | 16 |
-| Croatia | CRO | 16 |
-| Ghana | GHA | 16 |
-| Brazil | BRA | 16 |
-| England | ENG | 16 |
-| France | FRA | 16 |
+- Do not commit `.env` files or secrets to GitHub.
+- Use the package-level `.env.example` files as templates.
+- `shared/` contains reusable constants and typings for both packages.
 
----
-
-## 📝 Teams Data (teams.json)
-
-Each team object contains:
-
-```json
-{
-  "teamName": "USA",
-  "teamCode": "USA",
-  "roleId": "1234567890",
-  "logo": "./assets/usa.png",
-  "coachDiscordId": "0",
-  "coachRobloxId": "0",
-  "rosterLimit": 16,
-  "rosterPlayers": [
-    {
-      "playerId": "123456",
-      "playerName": "Player Name",
-      "joinedAt": "2024-01-01T00:00:00.000Z"
-    }
-  ]
-}
-```
-
----
-
-## 🎮 Commands
-
-### `/roster`
-
-View a national team's roster and player list.
-
-**Usage:**
-```
-/roster team: [National Team]
-```
-
-**Response:**
-- Team name & logo
-- Coach information
-- Current squad size vs. roster limit
-- List of all rostered players
-- Team code
-
----
-
-## 🏗 Project Structure
-
-```
-RSA Assistant/
-├── main.js              # Bot main file
-├── teams.json           # Team data & roster storage
-├── package.json         # Node.js dependencies
-├── .env                 # Environment variables (not in repo)
-├── assets/              # Team logo PNG files
-│   ├── usa.png
-│   ├── sweden.png
-│   └── ...
-└── README.md            # This file
-```
-
----
-
-## 💾 Data Management
-
-### TeamRegistry Class
-
-Handles all team and roster operations:
-
-```javascript
-// Load all teams from teams.json
-await registry.loadTeams();
 
 // Get team by name
 const team = registry.getTeamByName("USA");
