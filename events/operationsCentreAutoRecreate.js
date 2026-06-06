@@ -45,11 +45,11 @@ module.exports = {
           const navigationButtons = client.operationsCenter.getNavigationButtons(currentPage);
 
           // Create new message
-          const rsaPaths = [
-            path.join(process.cwd(), 'assets', 'rsa.png'),
-            path.join(process.cwd(), 'assets', 'rsa1.png'),
-          ];
-          const filesToSend = rsaPaths.filter((filePath) => fs.existsSync(filePath));
+          const rsaPath = path.join(process.cwd(), 'assets', 'rsa1.png');
+          const filesToSend = [];
+          if (fs.existsSync(rsaPath)) {
+            filesToSend.push(rsaPath);
+          }
 
           const sendPayload = {
             embeds: [pageEmbed],

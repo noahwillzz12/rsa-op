@@ -115,11 +115,9 @@ module.exports = {
       }
 
       try {
-        const rsaPaths = [
-          path.join(process.cwd(), 'assets', 'rsa.png'),
-          path.join(process.cwd(), 'assets', 'rsa1.png'),
-        ];
-        const filesToSend = rsaPaths.filter((filePath) => fs.existsSync(filePath));
+        const rsaPath = path.join(process.cwd(), 'assets', 'rsa1.png');
+        const filesToSend = [];
+        if (fs.existsSync(rsaPath)) filesToSend.push(rsaPath);
 
         if (dashboardMessage) {
           // Update existing message
