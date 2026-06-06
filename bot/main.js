@@ -267,9 +267,9 @@ try {
     const event = require(path.join(eventsPath, file));
     if (event && event.name) {
       if (event.once) {
-        client.once(event.name, (...args) => event.execute(...args));
+        client.once(event.name, (...args) => event.execute(client, ...args));
       } else {
-        client.on(event.name, (...args) => event.execute(...args));
+        client.on(event.name, (...args) => event.execute(client, ...args));
       }
     }
   }
