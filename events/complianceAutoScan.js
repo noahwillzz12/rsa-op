@@ -3,7 +3,8 @@ const { loadSettings } = require('../utils/settings');
 // Auto-scan compliance every 6 hours and on certain events
 async function startComplianceAutoScan(client) {
   if (!client.complianceEngine || !client.leagueMonitor) {
-    console.warn('⚠️ Compliance auto-scan: Missing required managers');
+    console.warn('⚠️ Compliance auto-scan: Missing required managers — will retry shortly');
+    setTimeout(() => startComplianceAutoScan(client), 1000);
     return;
   }
 

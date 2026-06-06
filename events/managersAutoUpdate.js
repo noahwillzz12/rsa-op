@@ -3,7 +3,8 @@ const { buildManagersDashboardEmbed } = require('../utils/managers');
 // Auto-update managers dashboard on role changes
 async function setupManagersDashboardAutoUpdate(client) {
   if (!client.managersDashboard) {
-    console.warn('⚠️ ManagersDashboard not initialized for auto-update');
+    console.warn('⚠️ ManagersDashboard not initialized for auto-update — will retry shortly');
+    setTimeout(() => setupManagersDashboardAutoUpdate(client), 1000);
     return;
   }
 
