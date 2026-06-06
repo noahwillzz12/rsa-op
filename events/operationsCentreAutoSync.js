@@ -8,7 +8,8 @@ module.exports = {
     console.log('[Operations Centre] Setting up auto-sync system...');
 
     if (!client.operationsCenter) {
-      console.warn('[Operations Centre] OperationsCenter not initialized');
+      console.warn('[Operations Centre] OperationsCenter not initialized — will retry shortly');
+      setTimeout(() => module.exports.execute(client), 1000);
       return;
     }
 

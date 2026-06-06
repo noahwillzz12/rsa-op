@@ -7,7 +7,11 @@ module.exports = {
       const client = message.client;
 
       // Check if this is the operations centre dashboard message
-      if (!client.operationsCenter) return;
+      if (!client.operationsCenter) {
+        console.warn('[Operations Centre] OperationsCenter not initialized for messageDelete — will retry shortly');
+        setTimeout(() => module.exports.execute(message), 1000);
+        return;
+      }
 
       const dashboardInfo = client.operationsCenter.getDashboardInfo();
 
