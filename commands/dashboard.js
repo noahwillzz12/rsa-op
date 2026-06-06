@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { SlashCommandBuilder, PermissionFlagsBits, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType } = require('discord.js');
 const { memberHasRoleNames } = require('../utils/permissions');
 
@@ -8,7 +10,7 @@ module.exports = {
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
   async execute(interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ flags: 64 });
 
     try {
       const client = interaction.client;
@@ -113,21 +115,21 @@ module.exports = {
       }
 
       try {
+        const rsaPath = path.join(process.cwd(), 'assets', 'rsa.png');
+        const filesToSend = [];
+        if (fs.existsSync(rsaPath)) filesToSend.push(rsaPath);
+
         if (dashboardMessage) {
           // Update existing message
-          await dashboardMessage.edit({
-            embeds: [pageEmbed],
-            components: navigationButtons,
-            files: ['./assets/rsa.png'],
-          });
+          const editPayload = { embeds: [pageEmbed], components: navigationButtons };
+          if (filesToSend.length) editPayload.files = filesToSend;
+          await dashboardMessage.edit(editPayload);
           console.log('[Dashboard] Updated existing dashboard message');
         } else {
           // Create new message
-          dashboardMessage = await dashboardChannel.send({
-            embeds: [pageEmbed],
-            components: navigationButtons,
-            files: ['./assets/rsa.png'],
-          });
+          const sendPayload = { embeds: [pageEmbed], components: navigationButtons };
+          if (filesToSend.length) sendPayload.files = filesToSend;
+          dashboardMessage = await dashboardChannel.send(sendPayload);
           console.log('[Dashboard] Created new dashboard message');
         }
       } catch (err) {
