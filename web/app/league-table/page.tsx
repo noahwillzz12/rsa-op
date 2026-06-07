@@ -38,44 +38,48 @@ export default async function LeagueTablePage() {
           </div>
         ) : (
           <div className="mt-6 space-y-8">
-            {Object.entries(groups).map(([seasonName, rows]) => (
-              <section key={seasonName} className="overflow-hidden rounded-3xl border border-rsa-border bg-slate-950/70">
-                <div className="border-b border-slate-800 bg-slate-900/90 px-6 py-4">
-                  <h2 className="text-xl font-semibold text-white">{seasonName}</h2>
-                  <p className="mt-1 text-sm text-slate-400">{rows.length} teams in the standings</p>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full text-left text-sm">
-                    <thead className="bg-slate-950/80 text-slate-400">
-                      <tr>
-                        <th className="px-5 py-3">#</th>
-                        <th className="px-5 py-3">Team</th>
-                        <th className="px-5 py-3 text-right">P</th>
-                        <th className="px-5 py-3 text-right">W</th>
-                        <th className="px-5 py-3 text-right">D</th>
-                        <th className="px-5 py-3 text-right">L</th>
-                        <th className="px-5 py-3 text-right">GD</th>
-                        <th className="px-5 py-3 text-right">Pts</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rows.map((row: any) => (
-                        <tr key={row.id} className="border-t border-slate-800 even:bg-slate-950/70">
-                          <td className="px-5 py-3 text-slate-300">{row.position}</td>
-                          <td className="px-5 py-3 text-white">{row.team?.teamName ?? 'Unknown team'}</td>
-                          <td className="px-5 py-3 text-right text-slate-300">{row.played}</td>
-                          <td className="px-5 py-3 text-right text-slate-300">{row.won}</td>
-                          <td className="px-5 py-3 text-right text-slate-300">{row.drew}</td>
-                          <td className="px-5 py-3 text-right text-slate-300">{row.lost}</td>
-                          <td className="px-5 py-3 text-right text-slate-300">{row.goalDifference}</td>
-                          <td className="px-5 py-3 text-right text-white">{row.points}</td>
+            {Object.entries(groups).map(([seasonName, rawRows]) => {
+              const rows = Array.isArray(rawRows) ? rawRows : [];
+
+              return (
+                <section key={seasonName} className="overflow-hidden rounded-3xl border border-rsa-border bg-slate-950/70">
+                  <div className="border-b border-slate-800 bg-slate-900/90 px-6 py-4">
+                    <h2 className="text-xl font-semibold text-white">{seasonName}</h2>
+                    <p className="mt-1 text-sm text-slate-400">{rows.length} teams in the standings</p>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full text-left text-sm">
+                      <thead className="bg-slate-950/80 text-slate-400">
+                        <tr>
+                          <th className="px-5 py-3">#</th>
+                          <th className="px-5 py-3">Team</th>
+                          <th className="px-5 py-3 text-right">P</th>
+                          <th className="px-5 py-3 text-right">W</th>
+                          <th className="px-5 py-3 text-right">D</th>
+                          <th className="px-5 py-3 text-right">L</th>
+                          <th className="px-5 py-3 text-right">GD</th>
+                          <th className="px-5 py-3 text-right">Pts</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-            ))}
+                      </thead>
+                      <tbody>
+                        {rows.map((row: any) => (
+                          <tr key={row.id} className="border-t border-slate-800 even:bg-slate-950/70">
+                            <td className="px-5 py-3 text-slate-300">{row.position}</td>
+                            <td className="px-5 py-3 text-white">{row.team?.teamName ?? 'Unknown team'}</td>
+                            <td className="px-5 py-3 text-right text-slate-300">{row.played}</td>
+                            <td className="px-5 py-3 text-right text-slate-300">{row.won}</td>
+                            <td className="px-5 py-3 text-right text-slate-300">{row.drew}</td>
+                            <td className="px-5 py-3 text-right text-slate-300">{row.lost}</td>
+                            <td className="px-5 py-3 text-right text-slate-300">{row.goalDifference}</td>
+                            <td className="px-5 py-3 text-right text-white">{row.points}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              );
+            })}
           </div>
         )}
       </div>
