@@ -1,6 +1,7 @@
 import { getTeamByCodeOrName } from '@/lib/db';
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic';
 export default async function TeamDetail({ params }: { params: Promise<{ team: string }> }) {
   const resolvedParams = await params;
   const lookup = resolvedParams.team;

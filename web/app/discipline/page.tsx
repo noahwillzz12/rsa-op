@@ -1,5 +1,6 @@
 import { getActiveSanctions, getCupTiedPlayers } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function DisciplinePage() {
   const sanctions = await getActiveSanctions(50);
   const cupTied = await getCupTiedPlayers();

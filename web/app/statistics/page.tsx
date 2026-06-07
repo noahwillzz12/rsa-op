@@ -5,6 +5,7 @@ import { BrandHeader } from '@/components/BrandHeader';
 import StatCard from '@/components/widgets/StatCard';
 import { getStatisticsSummary } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function StatisticsPage() {
   const session = await getServerSession(authOptions);
 

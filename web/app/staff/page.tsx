@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prismaClient';
 import StaffCard from '@/components/StaffCard';
 
+export const dynamic = 'force-dynamic';
 const STAFF_ROLES = [
   'RSA | Founders',
   'RSA | Co Founders',
@@ -42,7 +43,7 @@ export default async function StaffPage() {
 
   // Group by department
   const groups: Record<string, any[]> = {};
-  users.forEach((u) => {
+  users.forEach((u: any) => {
     const role = (u.roles || []).find((r: string) => STAFF_ROLES.includes(r)) || 'RSA | Staff';
     const dept = DEPARTMENTS[role] || 'Administration';
     if (!groups[dept]) groups[dept] = [];

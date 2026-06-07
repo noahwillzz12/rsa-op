@@ -1,9 +1,10 @@
 import ActivityClient, { ActivityEvent } from '@/components/ActivityClient';
 import { getActivityEvents, getActivityFilterOptions } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function ActivityPage() {
   const [rawEvents, options] = await Promise.all([getActivityEvents(100), getActivityFilterOptions()]);
-  const events = (Array.isArray(rawEvents) ? rawEvents : []).map((event: ActivityEvent) => ({
+  const events = (Array.isArray(rawEvents) ? rawEvents : []).map((event: any) => ({
     ...event,
     createdAt: event.createdAt ? new Date(event.createdAt).toISOString() : null,
   })) as ActivityEvent[];

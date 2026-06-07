@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { BrandHeader } from '@/components/BrandHeader';
 import { getLeagueTableGroups } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function LeagueTablePage() {
   const session = await getServerSession(authOptions);
 

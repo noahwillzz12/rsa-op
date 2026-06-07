@@ -1,6 +1,7 @@
 import { getTransfers, getSettings } from '@/lib/db';
 import TransfersClient from '@/components/TransfersClient';
 
+export const dynamic = 'force-dynamic';
 export default async function TransfersPage() {
   const transfers = await getTransfers(25);
   const settings = await getSettings();

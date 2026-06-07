@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getAllPlayers } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function PlayerProfilesPage() {
   const players = await getAllPlayers();
 

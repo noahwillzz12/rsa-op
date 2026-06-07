@@ -1,6 +1,7 @@
 import { getArchiveData } from '@/lib/db';
 import StatCard from '@/components/widgets/StatCard';
 
+export const dynamic = 'force-dynamic';
 export default async function ArchivesPage() {
   const archive = await getArchiveData();
 

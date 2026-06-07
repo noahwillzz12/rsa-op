@@ -1,6 +1,8 @@
 import { getAllTeams } from '@/lib/db';
 import RosterList from '@/components/RosterList';
 
+export const dynamic = 'force-dynamic';
+
 export default async function RostersPage() {
   const teams = await getAllTeams();
 

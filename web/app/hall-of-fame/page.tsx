@@ -1,5 +1,6 @@
 import { getHallOfFameEntries } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function HallOfFamePage() {
   const seasons = await getHallOfFameEntries();
 

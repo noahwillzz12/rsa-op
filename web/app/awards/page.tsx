@@ -1,5 +1,6 @@
 import { getAwardsBySeason } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function AwardsPage() {
   const seasons = await getAwardsBySeason();
 

@@ -1,6 +1,7 @@
 import { getAllTeams } from '@/lib/db';
 import TeamsClient from '@/components/TeamsClient';
 
+export const dynamic = 'force-dynamic';
 export default async function TeamsPage() {
   const teams = await getAllTeams();
 

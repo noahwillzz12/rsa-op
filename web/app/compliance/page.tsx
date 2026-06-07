@@ -5,6 +5,7 @@ import { BrandHeader } from '@/components/BrandHeader';
 import StatCard from '@/components/widgets/StatCard';
 import { getComplianceSummary } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function CompliancePage() {
   const session = await getServerSession(authOptions);
 

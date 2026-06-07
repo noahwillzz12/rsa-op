@@ -3,6 +3,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prismaClient';
 import ResultsClient from '@/components/ResultsClient';
 
+export const dynamic = 'force-dynamic';
 export default async function ResultsPage() {
   const session = (await getServerSession(authOptions as any)) as any;
   const results = await prisma.result.findMany({ orderBy: { matchDate: 'desc' } });

@@ -6,6 +6,7 @@ import StatCard from '@/components/widgets/StatCard';
 import StatusCard from '@/components/widgets/StatusCard';
 import { getWorldCupOverview } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function WorldCupPage() {
   const session = await getServerSession(authOptions);
 

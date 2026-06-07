@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { getAdministrationSummary } from '@/lib/db';
 import AdminControls from '@/components/AdminControls';
 
+export const dynamic = 'force-dynamic';
 const ADMIN_ROLES = ['RSA | Founders', 'RSA | Co Founders', 'RSA | Executive'];
 
 function isAdmin(session: any) {

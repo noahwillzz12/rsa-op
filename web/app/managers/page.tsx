@@ -1,6 +1,7 @@
 import ManagerCard from '@/components/ManagerCard';
 import { getManagerAssignmentsFromRoles } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function ManagersPage() {
   const derived = await getManagerAssignmentsFromRoles();
 

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getPlayerProfileById } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
 export default async function PlayerProfilePage({ params }: { params: Promise<{ playerId: string }> }) {
   const resolved = await params;
   const profile = await getPlayerProfileById(resolved.playerId);
