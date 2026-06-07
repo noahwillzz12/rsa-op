@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getPlayerProfileById } from '@/lib/db';
 
@@ -14,7 +15,15 @@ export default async function PlayerProfilePage({ params }: { params: Promise<{ 
   return (
     <div className="mx-auto w-full max-w-7xl space-y-6">
       <div className="flex flex-col gap-4 rounded-3xl border border-rsa-border bg-slate-950/70 p-6 sm:flex-row sm:items-center">
-        <img src={avatarUrl} alt={profile.playerTag} className="h-28 w-28 rounded-full object-cover" />
+        <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full bg-slate-900">
+          <Image
+            src={avatarUrl}
+            alt={profile.playerTag}
+            className="object-cover"
+            fill
+            unoptimized
+          />
+        </div>
         <div className="flex-1">
           <p className="text-sm uppercase tracking-widest text-rsa-gold">Player profile</p>
           <h1 className="text-3xl font-semibold text-white">{profile.playerTag}</h1>

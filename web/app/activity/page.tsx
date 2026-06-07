@@ -3,9 +3,9 @@ import { getActivityEvents, getActivityFilterOptions } from '@/lib/db';
 
 export default async function ActivityPage() {
   const [rawEvents, options] = await Promise.all([getActivityEvents(100), getActivityFilterOptions()]);
-  const events = rawEvents.map((event) => ({
+  const events = (Array.isArray(rawEvents) ? rawEvents : []).map((event: ActivityEvent) => ({
     ...event,
-    createdAt: event.createdAt ? event.createdAt.toISOString() : null,
+    createdAt: event.createdAt ? new Date(event.createdAt).toISOString() : null,
   })) as ActivityEvent[];
 
   return (

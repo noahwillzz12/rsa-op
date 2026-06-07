@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getAllPlayers } from '@/lib/db';
 
@@ -17,11 +18,13 @@ export default async function PlayerProfilesPage() {
         {players.map((player: any) => (
           <Link key={player.playerId} href={`/player-profiles/${player.playerId}`} className="card group rounded-3xl border border-rsa-border p-5 transition hover:border-rsa-gold/50">
             <div className="flex items-center gap-4">
-              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-slate-900">
-                <img
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-slate-900">
+                <Image
                   src={player.user?.image || `https://cdn.discordapp.com/embed/avatars/${(Number(player.playerId) % 5) || 0}.png`}
                   alt={player.playerTag}
-                  className="h-full w-full object-cover"
+                  className="object-cover"
+                  fill
+                  unoptimized
                 />
               </div>
               <div>
