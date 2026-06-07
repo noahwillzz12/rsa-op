@@ -37,7 +37,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="space-y-1" role="navigation" aria-label="Primary">
-        {LINKS.map((label) => (
+        {LINKS.map((label: string) => (
           <Link
             key={label}
             href={`/${label.toLowerCase().replace(/ /g, '-')}`}

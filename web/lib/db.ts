@@ -214,7 +214,7 @@ export async function getAllPlayers() {
   });
 
   const playersMap: Record<string, any> = {};
-  rosterEntries.forEach((entry) => {
+  rosterEntries.forEach((entry: any) => {
     const existing = playersMap[entry.playerId] ?? {
       playerId: entry.playerId,
       playerTag: entry.playerTag,
@@ -258,9 +258,9 @@ export async function getPlayerProfileById(playerId: string) {
     include: { team: true, user: true },
   });
 
-  const user = rosterEntries.find((entry) => entry.user)?.user ?? await prisma.user.findUnique({ where: { discordId: playerId } });
+  const user = rosterEntries.find((entry: any) => entry.user)?.user ?? await prisma.user.findUnique({ where: { discordId: playerId } });
   const playerTag = rosterEntries[0]?.playerTag || user?.name || 'Unknown Player';
-  const currentRoster = rosterEntries.find((entry) => entry.active) ?? rosterEntries[0] ?? null;
+  const currentRoster = rosterEntries.find((entry: any) => entry.active) ?? rosterEntries[0] ?? null;
   const transfers = await prisma.transfer.findMany({
     where: {
       OR: [
@@ -327,7 +327,7 @@ export async function getActivityFilterOptions() {
   const eventTypes = new Set<string>();
   const staffIds = new Set<string>();
 
-  logs.forEach((log) => {
+  logs.forEach((log: any) => {
     if (log.playerId) {
       playersMap[log.playerId] = { id: log.playerId, label: log.playerTag || log.playerId };
     }
@@ -343,11 +343,11 @@ export async function getActivityFilterOptions() {
   });
 
   const staffUsers = await prisma.user.findMany({ where: { id: { in: Array.from(staffIds) } } });
-  staffUsers.forEach((user) => {
+  staffUsers.forEach((user: any) => {
     staffMap[user.id] = { id: user.id, label: user.name || user.discordId || user.id };
   });
 
-  const staff = Array.from(staffIds).map((id) => staffMap[id] || { id, label: id });
+  const staff = Array.from(staffIds).map((id: string) => staffMap[id] || { id, label: id });
   const players = Object.values(playersMap);
   const teams = Object.values(teamsMap);
 

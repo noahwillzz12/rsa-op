@@ -61,7 +61,7 @@ export default function NotificationsClient() {
         ) : notifications.length === 0 ? (
           <div className="rounded-3xl border border-slate-800 bg-slate-950/80 p-6 text-slate-400">No notifications available.</div>
         ) : (
-          notifications.map((notification) => (
+          notifications.map((notification: any) => (
             <article key={notification.id} className="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>

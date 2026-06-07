@@ -42,7 +42,7 @@ export default function ActivityClient({
 
   const queryString = useMemo(() => {
     const params = new URLSearchParams();
-    Object.entries(filters).forEach(([key, value]) => {
+    (Object.entries(filters) as Array<[keyof typeof filters, string]>).forEach(([key, value]) => {
       if (value) params.set(key, value);
     });
     params.set('limit', '100');
@@ -78,7 +78,7 @@ export default function ActivityClient({
               Player
               <select value={filters.playerId} onChange={(e) => setFilters((prev) => ({ ...prev, playerId: e.target.value }))} className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-950 px-3 py-2 text-white outline-none focus:border-rsa-gold">
                 <option value="">All players</option>
-                {players.map((player) => (
+                {players.map((player: FilterOption) => (
                   <option key={player.id} value={player.id}>{player.label}</option>
                 ))}
               </select>
@@ -87,7 +87,7 @@ export default function ActivityClient({
               Team
               <select value={filters.teamId} onChange={(e) => setFilters((prev) => ({ ...prev, teamId: e.target.value }))} className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-950 px-3 py-2 text-white outline-none focus:border-rsa-gold">
                 <option value="">All teams</option>
-                {teams.map((team) => (
+                {teams.map((team: FilterOption) => (
                   <option key={team.id} value={team.id}>{team.label}</option>
                 ))}
               </select>
@@ -96,7 +96,7 @@ export default function ActivityClient({
               Staff
               <select value={filters.staffId} onChange={(e) => setFilters((prev) => ({ ...prev, staffId: e.target.value }))} className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-950 px-3 py-2 text-white outline-none focus:border-rsa-gold">
                 <option value="">All staff</option>
-                {staff.map((member) => (
+                {staff.map((member: FilterOption) => (
                   <option key={member.id} value={member.id}>{member.label}</option>
                 ))}
               </select>
@@ -105,7 +105,7 @@ export default function ActivityClient({
               Event type
               <select value={filters.type} onChange={(e) => setFilters((prev) => ({ ...prev, type: e.target.value }))} className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-950 px-3 py-2 text-white outline-none focus:border-rsa-gold">
                 <option value="">All types</option>
-                {eventTypes.map((typeOption) => (
+                {eventTypes.map((typeOption: string) => (
                   <option key={typeOption} value={typeOption}>{typeOption}</option>
                 ))}
               </select>
@@ -149,7 +149,7 @@ export default function ActivityClient({
                   <td colSpan={6} className="px-4 py-6 text-center text-slate-500">No events found for the selected filters.</td>
                 </tr>
               ) : (
-                events.map((event) => (
+                events.map((event: ActivityEvent) => (
                   <tr key={event.id} className="border-b border-slate-800 last:border-b-0 hover:bg-slate-900/60">
                     <td className="px-4 py-3 align-top">{event.createdAt ? new Date(event.createdAt).toLocaleString() : '—'}</td>
                     <td className="px-4 py-3 align-top">{event.text}</td>

@@ -39,7 +39,7 @@ const DEPARTMENTS: Record<string, string> = {
 };
 
 export default async function StaffPage() {
-  const users = await prisma.user.findMany({ where: { OR: STAFF_ROLES.map((r) => ({ roles: { has: r } })) } });
+  const users = await prisma.user.findMany({ where: { OR: STAFF_ROLES.map((r: string) => ({ roles: { has: r } })) } });
 
   // Group by department
   const groups: Record<string, any[]> = {};
@@ -58,7 +58,7 @@ export default async function StaffPage() {
       </header>
 
       <div className="space-y-8">
-        {Object.entries(groups).map(([dept, members]) => (
+        {(Object.entries(groups) as Array<[string, any[]]>).map(([dept, members]) => (
           <section key={dept}>
             <h2 className="mb-4 text-lg font-semibold text-white">{dept}</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

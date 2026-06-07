@@ -39,7 +39,7 @@ export default async function LeagueTablePage() {
           </div>
         ) : (
           <div className="mt-6 space-y-8">
-            {Object.entries(groups).map(([seasonName, rawRows]) => {
+            {(Object.entries(groups) as Array<[string, any[]]>).map(([seasonName, rawRows]) => {
               const rows = Array.isArray(rawRows) ? rawRows : [];
 
               return (

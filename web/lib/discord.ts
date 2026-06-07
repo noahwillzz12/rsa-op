@@ -68,7 +68,7 @@ export async function fetchGuildMember(discordId: string) {
 
 export function mapDiscordRoles(roleIds: string[], roleMap: Record<string, string>) {
   return roleIds
-    .map((roleId) => roleMap[roleId])
+    .map((roleId: string) => roleMap[roleId])
     .filter((name): name is string => typeof name === 'string' && STAFF_ROLE_NAMES.includes(name));
 }
 
